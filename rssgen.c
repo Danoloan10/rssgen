@@ -182,7 +182,7 @@ char *rssgen (struct rss_channel *chan, size_t n)
 	// buf[1] <- cuerpo de <rss>
 
 	if (!ret) {
-		char *head = "<?xml version=\"1.0\" encoding=\"encoding-name\"?>\n";
+		char *head = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
 		bufs[0] = bufs[1];
 		bufs[1] = (struct __buf) { NULL, NULL, 0 };
