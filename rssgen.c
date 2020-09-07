@@ -83,7 +83,7 @@ static int xml_put_tag  (struct __buf *buf, const char *name, const char *attrs,
 			taglen = asprintf(&tag, "<%s/>\n", name);
 		else
 			taglen = asprintf(&tag, "<%s>\n%s\n</%s>\n", name, body, name);
-	else {
+	} else {
 		if (body == NULL)
 			taglen = asprintf(&tag, "<%s %s/>", name, attrs);
 		else
