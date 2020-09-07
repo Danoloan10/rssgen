@@ -83,7 +83,7 @@ static int xml_put_tag  (struct __buf *buf, const char *name, const char *attrs,
 			taglen = asprintf(&tag, "<%s/>\n", name);
 		else
 			taglen = asprintf(&tag, "<%s>\n%s\n</%s>\n", name, body, name);
-	else {
+	} else {
 		if (body == NULL)
 			taglen = asprintf(&tag, "<%s %s/>", name, attrs);
 		else
@@ -182,7 +182,7 @@ char *rssgen (struct rss_channel *chan, size_t n)
 	// buf[1] <- cuerpo de <rss>
 
 	if (!ret) {
-		char *head = "<?xml version=\"1.0\" encoding=\"encoding-name\"?>\n";
+		char *head = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 
 		bufs[0] = bufs[1];
 		bufs[1] = (struct __buf) { NULL, NULL, 0 };
