@@ -1,19 +1,20 @@
 #ifndef RSSGEN_H
 #define RSSGEN_H
 
-#define RSS_ITEM_INIT ((struct rss_item) { NULL, NULL, NULL, NULL, NULL, NULL, NULL, /*NULL, NULL*/ })
+#define RSS_ITEM_INIT ((struct rss_item) { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL /*NULL, NULL*/ })
 
 struct rss_item {
-	const char *title;
-	const char *link;
-	const char *description;
-	const char *author;
-	const char *comments;
-	const char *pubDate;
-//	const struct rss_args *categories;
-//	const struct rss_args *enclosures;
-//	const struct rss_args *source;
-	const char *source;
+	char *title;
+	char *link;
+	char *description;
+	char *author;
+	char *comments;
+	char *pubDate;
+//	struct rss_args *categories;
+//	struct rss_args *enclosures;
+//	struct rss_args *source;
+	char *source;
+	char *guid;
 };
 
 struct rss_item_list {
@@ -22,13 +23,13 @@ struct rss_item_list {
 };
 
 struct rss_channel {
-	const char *title;
-	const char *link;
-	const char *description;
+	char *title;
+	char *link;
+	char *description;
 	// TODO más
 	struct rss_item_list items;
 };
 
-char *rssgen (struct rss_channel *chan, size_t n);
+char *rssgen (const struct rss_channel *chan, size_t n);
 
 #endif

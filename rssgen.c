@@ -99,7 +99,7 @@ static int xml_put_tag  (struct __buf *buf, const char *name, const char *attrs,
 	return ret;
 }
 
-static char *rssgen_item (struct rss_item *item)
+static char *rssgen_item (const struct rss_item *item)
 {
 	int ret = 0;
 	struct __buf buf = { NULL, NULL, 0 };
@@ -123,6 +123,8 @@ static char *rssgen_item (struct rss_item *item)
 			ret |= xml_put_tag(&buf, "pubDate",     NULL, item->pubDate);
 		if (item->source != NULL)
 			ret |= xml_put_tag(&buf, "source",      NULL, item->source);
+		if (item->guid != NULL)
+			ret |= xml_put_tag(&buf, "guid",        NULL, item->guid);
 	}
 
 	if (ret && buf.str != NULL) {
@@ -133,7 +135,7 @@ static char *rssgen_item (struct rss_item *item)
 	return buf.str;
 }
 
-static char *rssgen_chan (struct rss_channel *chan)
+static char *rssgen_chan (const struct rss_channel *chan)
 {
 	int ret = 0;
 	struct __buf buf = { NULL, NULL, 0 };
@@ -163,7 +165,7 @@ static char *rssgen_chan (struct rss_channel *chan)
 	return buf.str;
 }
 
-char *rssgen (struct rss_channel *chan, size_t n)
+char *rssgen (const struct rss_channel *chan, size_t n)
 {
 	struct __buf bufs[2] = {
 		{ NULL, NULL, 0 },
