@@ -108,24 +108,22 @@ static char *rssgen_item (const struct rss_item *item)
 	if (item == NULL)
 		return NULL;
 
-	if (item->title != NULL &&
-		item->link != NULL &&
-		item->description != NULL)
-	{
+	if (item->title != NULL)
 		ret |= xml_put_tag(&buf, "title",       NULL, item->title);
+	if (item->link != NULL)
 		ret |= xml_put_tag(&buf, "link",        NULL, item->link);
+	if (item->description != NULL)
 		ret |= xml_put_tag(&buf, "description", NULL, item->description);
-		if (item->author != NULL)
-			ret |= xml_put_tag(&buf, "author",      NULL, item->author);
-		if (item->comments != NULL)
-			ret |= xml_put_tag(&buf, "comments",    NULL, item->comments);
-		if (item->pubDate != NULL)
-			ret |= xml_put_tag(&buf, "pubDate",     NULL, item->pubDate);
-		if (item->source != NULL)
-			ret |= xml_put_tag(&buf, "source",      NULL, item->source);
-		if (item->guid != NULL)
-			ret |= xml_put_tag(&buf, "guid",        NULL, item->guid);
-	}
+	if (item->author != NULL)
+		ret |= xml_put_tag(&buf, "author",      NULL, item->author);
+	if (item->comments != NULL)
+		ret |= xml_put_tag(&buf, "comments",    NULL, item->comments);
+	if (item->pubDate != NULL)
+		ret |= xml_put_tag(&buf, "pubDate",     NULL, item->pubDate);
+	if (item->source != NULL)
+		ret |= xml_put_tag(&buf, "source",      NULL, item->source);
+	if (item->guid != NULL)
+		ret |= xml_put_tag(&buf, "guid",        NULL, item->guid);
 
 	if (ret && buf.str != NULL) {
 		free(buf.str);
